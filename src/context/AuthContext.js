@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -9,7 +8,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../auth/firebase";
 import {
@@ -18,20 +17,20 @@ import {
   toastWarnNotify,
 } from "../helpers/ToastNotify";
 
-// export const {Provider} = createContext()
 export const AuthContext = createContext();
 //* with custom hook
-// export const useAuthContext = () => {
-//     return useContext(AuthContext);
-//   };
+export const useAuthContext = () => {
+  return useContext(AuthContext);
+};
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("user")) || false
+    JSON.parse(sessionStorage.getItem("user"))
   );
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   useEffect(() => {
+    // setCurrentUser(JSON.parse(sessionStorage.getItem("user")));
     userObserver();
   }, []);
 
@@ -49,8 +48,10 @@ const AuthContextProvider = ({ children }) => {
       });
       navigate("/");
       toastSuccessNotify("Registered successfully!");
-    } catch (error) {
-      toastErrorNotify(error.message);
+      console.log(userCredential);
+    } catch (err) {
+      toastErrorNotify(err.message);
+      // alert(err.message);
     }
   };
 
@@ -58,34 +59,42 @@ const AuthContextProvider = ({ children }) => {
   //* => Authentication => sign-in-method => enable Email/password
   //! Email/password ile girişi enable yap
   const signIn = async (email, password) => {
-    //? mevcut kullanıcının giriş yapması için kullanılan firebase metodu
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      //? mevcut kullanıcının giriş yapması için kullanılan firebase metodu
+      let userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       navigate("/");
       toastSuccessNotify("Logged in successfully!");
-    } catch (error) {
-      toastErrorNotify(error.message);
+      console.log(userCredential);
+      // sessionStorage.setItem("user", JSON.stringify(userCredential.user));
+    } catch (err) {
+      toastErrorNotify(err.message);
+      // alert(err.message);
     }
   };
 
   const logOut = () => {
     signOut(auth);
+    toastSuccessNotify("Logged out successfully!");
   };
 
   const userObserver = () => {
     //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { email, displayName, photoURL } = user;
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const { email, displayName, photoURL } = currentUser;
         setCurrentUser({ email, displayName, photoURL });
         sessionStorage.setItem(
           "user",
           JSON.stringify({ email, displayName, photoURL })
         );
       } else {
+        // User is signed out
         setCurrentUser(false);
         sessionStorage.clear();
-        // console.log("logged out");
       }
     });
   };
@@ -106,6 +115,7 @@ const AuthContextProvider = ({ children }) => {
         toastSuccessNotify("Logged in successfully!");
       })
       .catch((error) => {
+        // Handle Errors here.
         console.log(error);
       });
   };
@@ -125,12 +135,12 @@ const AuthContextProvider = ({ children }) => {
       });
   };
   const values = {
+    currentUser,
     createUser,
     signIn,
     logOut,
     signUpProvider,
     forgotPassword,
-    currentUser,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

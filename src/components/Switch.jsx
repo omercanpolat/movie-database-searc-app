@@ -8,6 +8,7 @@ const Switch = () => {
   } else {
     document.documentElement.classList.remove("dark");
   }
+
   return (
     <div className="flex col-span-1 justify-end">
       <button

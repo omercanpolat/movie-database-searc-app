@@ -4,9 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import VideoSection from "../components/VideoSection";
 
 const MovieDetail = () => {
+  const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState("");
   const [videoKey, setVideoKey] = useState();
-  const { id } = useParams();
+
   const {
     title,
     poster_path,
