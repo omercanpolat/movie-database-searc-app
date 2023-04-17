@@ -18,11 +18,16 @@ const Navbar = () => {
   return (
     <>
       <nav
+        data-test="movieHeader"
         className="flex w-full flex-wrap items-center justify-between bg-neutral-100 dark:bg-gray-900 py-3 dark:text-white shadow-lg lg:flex-wrap lg:justify-start fixed top-0 z-20"
         data-te-navbar-ref=""
       >
-        <div className="flex w-full flex-wrap items-center justify-between px-6">
-          <Link className="pr-2 text-2xl font-semibold" to="/">
+        <div className=" flex w-full flex-wrap items-center justify-between px-6">
+          <Link
+            data-test="movieHeader"
+            className="pr-2 text-2xl font-semibold"
+            to="/"
+          >
             React Movie App
           </Link>
           <div className="relative flex items-center">
@@ -40,6 +45,7 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 <img
+                  data-test="userAvatar"
                   src={currentUser?.photoURL || avatar}
                   className="rounded-full"
                   style={{ height: 25, width: 25 }}
@@ -55,6 +61,7 @@ const Navbar = () => {
               >
                 <li>
                   <Link
+                    data-test="registerBtn"
                     className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
                     to="/register"
                     data-te-dropdown-item-ref=""
@@ -67,6 +74,7 @@ const Navbar = () => {
                     className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
                     to="/login"
                     data-te-dropdown-item-ref=""
+                    data-test="loginBtn"
                   >
                     Login
                   </Link>
@@ -77,6 +85,7 @@ const Navbar = () => {
                     role="button"
                     onClick={() => logOut()}
                     data-te-dropdown-item-ref=""
+                    data-test="logoutBtn"
                   >
                     Logout
                   </span>

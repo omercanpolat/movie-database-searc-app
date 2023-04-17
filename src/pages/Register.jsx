@@ -37,7 +37,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div data-test="userAvatar" className="flex justify-center">
       <div className="form-image hidden md:block">
         <img
           src={"https://picsum.photos/800/800"}
@@ -48,11 +48,15 @@ const Register = () => {
       <div className="overflow-hidden flex-1 h-screen justify-center items-center dark:bg-gray-dark-main">
         <div className={`form-container mt-[5vh] w-[380px] h-[580px] `}>
           <form onSubmit={handleSubmit}>
-            <h2 className="text-red-main text-2xl font-[500] text-center tracking-[0.1em] mb-3">
+            <h2
+              data-test="signupHeader"
+              className="text-red-main text-2xl font-[500] text-center tracking-[0.1em] mb-3"
+            >
               Sign Up
             </h2>
             <div className="relative z-0 w-full mb-6 group">
               <input
+                data-test="firstNameInput"
                 name="floating_text"
                 className="peer"
                 type="text"
@@ -60,10 +64,13 @@ const Register = () => {
                 placeholder=" "
                 onChange={(e) => setFirstName(e.target.value)}
               />
-              <label htmlFor="floating_text">First Name</label>
+              <label data-test="firstNameLbl" htmlFor="floating_text">
+                First Name
+              </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
+                data-test="lastNameInput"
                 name="floating_text"
                 className="peer"
                 type="text"
@@ -71,10 +78,13 @@ const Register = () => {
                 placeholder=" "
                 onChange={(e) => setLastName(e.target.value)}
               />
-              <label htmlFor="floating_text">Last Name</label>
+              <label data-test="lastNameLbl" htmlFor="floating_text">
+                Last Name
+              </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
+                data-test="emailInput"
                 name="floating_email"
                 className="peer"
                 type="email"
@@ -82,10 +92,13 @@ const Register = () => {
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <label htmlFor="floating_email">Email</label>
+              <label data-test="emailLbl" htmlFor="floating_email">
+                Email
+              </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
+                data-test="passwordInput"
                 name="floating_password"
                 className="peer"
                 type="password"
@@ -93,9 +106,15 @@ const Register = () => {
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <label htmlFor="floating_password">Password</label>
+              <label data-test="passwordLbl" htmlFor="floating_password">
+                Password
+              </label>
             </div>
-            <button className="btn-danger" type="submit">
+            <button
+              data-test="registerButton"
+              className="btn-danger"
+              type="submit"
+            >
               Register
             </button>
             <button

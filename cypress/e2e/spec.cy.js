@@ -6,10 +6,18 @@ describe("navbar test", () => {
     cy.get("[data-test='switchMode']").should("be.visible").dblclick();
     cy.get("[data-test='userAvatar']").should("be.visible").click();
     cy.get("[data-test='registerBtn']").should("be.visible").click();
+    cy.url().should("include", "/register");
     cy.go("back");
-    cy.get("[data-test='userAvatar']").should("be.visible").click();
-    cy.get("[data-test='loginBtn']").should("be.visible").click();
+    cy.url().should("include", "/");
+    cy.get("[data-test='userAvatar']")
+      .should("be.visible")
+      .click({ force: true });
+    cy.get("[data-test='loginBtn']")
+      .should("be.visible")
+      .click({ force: true });
+    cy.url().should("include", "/login");
     cy.go("back");
+    cy.url().should("include", "/");
     cy.get("[data-test='userAvatar']").should("be.visible").click();
     cy.get("[data-test='logoutBtn']").should("be.visible").click();
   });
