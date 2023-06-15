@@ -64,6 +64,25 @@ Build a Movie App using ReactJS.
 
 - ReactJS
 
+
+Description: Developed a Movie App using ReactJS, as part of a portfolio project. The goal was to create a user-friendly application that allows users to search for movies, view movie details, and watch trailers.
+Key Details:
+Utilized HTML, CSS, JavaScript, and ReactJS to build the frontend of the Movie App.
+Collaborated with a team of colleagues to develop the project and ensure its successful completion.
+Implemented Firebase Authentication for user sign-up, sign-in, and sign-out functionalities.
+Integrated the Firebase Authentication JavaScript SDK to handle user authentication securely.
+Incorporated Firebase's Email/Password and Google authentication methods for user authentication.
+Utilized Firebase's authentication state observer to manage the user's authentication state.
+Integrated the Movie Database (TMDb) API to fetch movie data, including movie listings, details, and trailers.
+Used Axios to make HTTP requests to the TMDb API and retrieve movie data in JSON format.
+Designed and developed reusable React components such as MovieCard and Navbar to enhance code modularity and maintainability.
+Implemented React context (AuthContext) to manage the authentication state and provide authentication data throughout the app.
+Employed CSS frameworks like Bootstrap and Material UI to enhance the user interface and ensure a responsive design.
+Outcome: Successfully created a functional and visually appealing Movie App, enabling users to browse movies, access detailed information, and watch trailers. 
+This project allowed me to further develop my frontend development skills while working on a real-world application. It enhanced my understanding of ReactJS, API integration, and user authentication using Firebase. The collaborative nature of the project fostered effective teamwork and strengthened my ability to work in a development team. Overall, the Movie App frontend project was a valuable learning experience and a significant contribution to my portfolio.
+
+
+
 ### At the end of the project, students will be able to;
 
 - improve coding skills within HTML & CSS & JS & ReactJS.
